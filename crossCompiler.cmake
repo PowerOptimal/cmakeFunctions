@@ -1,0 +1,27 @@
+cmake_minimum_required(VERSION 3.13)
+
+macro(setupCrossCompiler )
+    # specify the cross compiler
+    SET(CMAKE_C_COMPILER_WORKS 1)
+    SET(CMAKE_C_COMPILER arm-none-eabi-gcc)
+    SET(CMAKE_CXX_COMPILER_WORKS 1)
+    SET(CMAKE_CXX_COMPILER arm-none-eabi-g++)
+    SET(CMAKE_ASM_COMPILER arm-none-eabi-as)
+    set(AS arm-none-eabi-as)
+    set(AR arm-none-eabi-ar)
+    set(OBJCOPY arm-none-eabi-objcopy)
+    set(OBJDUMP arm-none-eabi-objdump)
+    set(SIZE arm-none-eabi-size)
+endmacro()
+
+macro(setStandardFlagsForCrossCompiler debugLevel codeOptimization )
+    SET(DEBUG_LEVEL ${debugLevel})
+    SET(VERBOSE " ") #-v
+    SET(DEFAULT_CODE_OPTIMIZATION ${codeOptimization} )
+    SET(DEFAULT_CODE_OPTIMIZATION "${DEFAULT_CODE_OPTIMIZATION} -ffunction-sections -fdata-sections -fno-common -ffreestanding -fsingle-precision-constant -fmessage-length=0 ")
+    SET(DEFAULT_CODE_OPTIMIZATION "${DEFAULT_CODE_OPTIMIZATION} -fno-exceptions - fno-rtti -fno-use-cxa-atexit -fno-threadsafe-statics -fabi-version=6")
+    SET(WARNINGS "-pedantic -pedantic-errors -Wunused -Wuninitialized -Wall -Wextra -Wmissing-declarations -Wconversion -Wpointer-arith -Wshadow -Wfloat-equal -Werror ")
+    SET(CXX_WARNINGS "-Wctor-dtor-privacy -Wnon-virtual-dtor -Wstrict-null-sentinel -Wsign-promo -Weffc++ ")
+    SET(LINKER_MISC "-specs=nosys.specs -specs=nano.specs ")
+    SET(LINKER_GENERAL "-nostartfiles -Xlinker -gc-sections")
+endmacro()
