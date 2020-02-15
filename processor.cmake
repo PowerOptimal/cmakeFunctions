@@ -26,7 +26,7 @@ function(setTargetFlags processor)
   string(LENGTH processor len)
   string(SUBSTRING ${processor} 0 ${len} PROC_TYPE)
   message(STATUS "Adding Processor defines: [${processor}][${PROC_TYPE}]")
-  #add_definitions("-D${PROC_TYPE}")
+  add_definitions("-D${PROC_TYPE}")
 
 endfunction()
 
