@@ -5,7 +5,7 @@ function(setTargetFlags processor)
 
   set(cortexM0 STM32F030x4 )
   set(cortexM3 STM32F103xB )
-  set(cortexM4 STM32F334x8 STM32F429xx)
+  set(cortexM4 GD32F330x8 GD32F303xC GD32E103xB STM32F334x8 STM32F429xx)
   if( processor IN_LIST cortexM0)
     message(STATUS "Cortext M0 found: ${processor}")
     SET(TARGET_FLAGS " -march=ARMv6-M -mtune=cortex-m0 -mthumb -mfloat-abi=soft  -mno-unaligned-access ${CMAKE_CXX_FLAGS}" PARENT_SCOPE)
